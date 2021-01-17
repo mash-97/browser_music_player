@@ -1,0 +1,40 @@
+.player_container{
+	display: flex;
+/*
+	align-items: center;
+*/
+	flex-direction: row;
+	justify-content: center;
+	align-content: space-between;
+}
+
+.music_player_container, .music_list_container{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+
+.track_art{
+	margin: 25px;
+	height: 250px;
+	width: 250px;
+	background-image: url("");
+	background-size: cover;
+	border-radius: 33%;
+}
+
+.track_details_container{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.player_buttons_container, .seek_slider_container, .volume_slider_container{
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+}

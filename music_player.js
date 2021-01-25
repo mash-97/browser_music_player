@@ -7,6 +7,7 @@ class Track{
 	}
 }
 
+
 class MusicPlayList{
   // track_list requires obj: name, artist, source, image
   // music_list_container requires a html div element.
@@ -26,8 +27,22 @@ class MusicPlayList{
 
 
 class MusicPlayer{
-  constructor(track_name_div, track_artist_div, track_art)
+  constructor(track_name_div, track_artist_div, track_art_div, seek_slider_input)
   {
+		this.track_name_div = track_name_div;
+		this.track_artist_div = track_artist_div;
+		this.track_art_div = track_art_div;
+		this.track_seek_slider_in = seek_slider_in;
+		
+		this.audio_elm = document.createElement('audio');
+	}
+	
+	_initializeTrackDetails(track)
+	{
+		this.track_name_div.innerHTML = "<b>"+track.name+"</b";
+		this.track_artist_div.innerHTML = track.artist;
+		this.track_seek_slider_in.value = 0;
+		this.is_playing = false;
 	}
 }
 

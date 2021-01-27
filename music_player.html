@@ -25,12 +25,12 @@
 				<div class="player_sliders">
 					<div class="seek_slider_container">
 						<label class="current_time_lb"></label>
-						<input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+						<input type="range" min="1" max="100" value="0" class="seek_slider_input" onchange="seekTo()">
 						<label class="total_duration_lb"></label>
 					</div>
 					<div class="volume_slider_container">
 						<label class="current_volume_lb">0</label>
-						<input type="range" min="0" max="100" value="60" class="volume_slider" onchange="setVolume()">
+						<input type="range" min="0" max="100" value="60" class="volume_slider_input" onchange="setVolume()">
 						<label class="total_volume_lb">100</label>
 					</div>
 				</div>
@@ -52,6 +52,44 @@
 
 		<!-- Load the player.js script for the player -->
 		<script language="JavaScript" src="music_player.js"></script>
-		<script language="JavaScript"></script>
+		<script language="JavaScript">
+			let track_name_div = document.querySelector(".track_name_dv");
+			let track_art_div = document.querySelector(".track_art_dv");
+			let track_artist_div = document.querySelector(".track_artist_dv");
+			let playpause_btn = document.querySelector(".playpause_btn");
+			let current_time_lb = document.querySelector(".current_time_lb");
+			let seek_slider_input = document.querySelector(".seek_slider_input");
+			let duration_lb = document.querySelector(".total_duration_lb");
+
+			let mth = new MusicalTrackHTML(
+					track_name_div, track_artist_div, track_art_div,
+					playpause_btn, current_time_lb, seek_slider_input, duration_lb);
+
+			let mt = new MusicalTrack("insane_silence", "unknown", "1.mp3", "ran.png");
+			let cat = mt.initializeAsPlayable();
+
+			let sb = document.createElement("button");
+			sb.onclick = startPlayer;
+			document.body.appendChild(sb);
+
+			function load(){
+				if(!mt) return;
+				while(mt.playable==false)
+					console.log("Waiting for the mt.playble to be true");
+			}
+			function startPlayer(){
+				if(mt.playable==true)
+				{
+					console.log("loading: ", mt);
+					mth.setMusicalTrack(mt);
+					mth.initializeForPlay();
+				}
+				else
+				{
+					window.alert("Not playable!");
+				}
+			}
+			load().then(startPlayer);
+		</script>
 	</body>
 </html>
